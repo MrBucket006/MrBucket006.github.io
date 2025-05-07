@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name - Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            color: #333;
+            line-height: 1.7; /* Improved default line height for readability */
+        }
+        header {
+            background-color: #4CAF50;
+            padding: 20px;
+            text-align: center;
+            color: white;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5em; /* Larger heading for better impact */
+            font-weight: 700; /* Use 700 for the boldest weight */
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin-top: 15px;
+            display: flex;
+            justify-content: center;
+        }
+        nav ul li {
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500; /* Medium font weight for nav links */
+            font-size: 1.1em; /* Slightly larger font size */
+            transition: color 0.3s ease; /* Smooth color transition */
+        }
+        nav ul li a:hover {
+            color: #f1c40f; /* Highlight on hover */
+        }
+        main {
+            padding: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        section {
+            margin-bottom: 60px; /* Increased section spacing */
+        }
+        section h2 {
+            font-size: 2.2em; /* Increased heading size */
+            margin-bottom: 30px; /* Increased heading spacing */
+            text-align: center;
+            font-weight: 600; /* Use 600 for a strong heading weight */
+            color: #2c3e50; /* Darker heading color */
+            border-bottom: 2px solid #ddd; /* Add a subtle border */
+            padding-bottom: 10px;
+        }
+        .hero {
+            text-align: center;
+            padding: 100px 0; /* Increased padding for the hero section */
+            background-color: #e0f7fa; /* Light background for contrast */
+            border-radius: 8px; /* Add some border radius */
+        }
+        .hero h1 {
+            font-size: 3em; /* Even larger heading for the hero */
+            color: #2c3e50; /* Darker color for the main heading */
+            margin-bottom: 20px;
+        }
+        .hero p {
+            font-size: 1.2em; /* Slightly larger paragraph text */
+            color: #555;
+            max-width: 80%; /* Restrict paragraph width for better readability */
+            margin: 0 auto;
+        }
+        .hero-content {
+            /* Removed the fixed width, will adjust based on content */
+            margin: 0 auto; /* Center the content */
+        }
+
+        .social-links {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+        }
+        .social-links a {
+            display: inline-flex; /* Use inline-flex for better alignment */
+            align-items: center;
+            justify-content: center;
+            width: 50px; /* Increased size of social icons */
+            height: 50px;
+            margin: 0 10px;
+            border-radius: 50%;
+            background-color: #3498db; /* Example social media color */
+            color: white;
+            text-decoration: none;
+            font-size: 1.5em; /* Increased icon size */
+            transition: background-color 0.3s ease; /* Smooth transition */
+        }
+        .social-links a:hover {
+            background-color: #217dbb; /* Darker shade on hover */
+        }
+        .button {
+            display: inline-block;
+            padding: 12px 25px; /* Slightly increased button padding */
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1.2em; /* Slightly larger button text */
+            margin-top: 30px;
+            transition: background-color 0.3s ease;
+            font-weight: 600; /* Make the button text bold */
+        }
+        .button:hover {
+            background-color: #45a049;
+        }
+        .about {
+            display: flex;
+            flex-direction: column; /* Stack items vertically by default */
+            align-items: center; /* Center items horizontally */
+            text-align: center; /* Center text */
+        }
+
+        .about-content {
+            max-width: 80%;
+             margin-bottom: 20px;
+        }
+        .about img {
+            max-width: 300px; /* Increased image size */
+            border-radius: 8px;
+            margin-top: 20px; /* Add space between text and image */
+        }
+
+        .portfolio {
+            text-align: center;
+        }
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Increased min width */
+            gap: 30px; /* Increased gap */
+            margin-top: 30px;
+        }
+        .project-card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Slightly stronger shadow */
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+        }
+        .project-card:hover {
+            transform: translateY(-5px); /* Slight lift on hover */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Increased shadow on hover */
+        }
+        .project-card img {
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+        .project-card h3 {
+            font-size: 1.5em; /* Increased heading size */
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        .project-card p {
+            color: #555;
+            margin-bottom: 15px;
+        }
+        .project-card a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            font-weight: 500;
+        }
+        .project-card a:hover {
+            background-color: #2980b9;
+        }
+
+        .skills {
+            text-align: center;
+        }
+        .skills-list {
+            list-style-type: none;
+            padding: 0;
+            margin-top: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center; /* Center the list items */
+            gap: 20px; /* Increased gap between skill items */
+        }
+        .skills-list li {
+            background-color: #fff;
+            padding: 12px 25px; /* Slightly increased padding */
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08); /* Subtle shadow */
+            font-size: 1.1em; /* Slightly larger font size */
+            color: #34495e; /* Darker text color */
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            font-weight: 500; /* Medium font weight */
+        }
+        .skills-list li:hover {
+            background-color: #e6e6e6; /* Slightly lighter background on hover */
+            transform: translateY(-3px); /* Slight lift on hover */
+        }
+
+        .contact {
+            text-align: center;
+        }
+        .contact form {
+            margin-top: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 80%; /* Increased form width */
+            max-width: 600px; /* Added max width */
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .form-group {
+            margin-bottom: 20px;
+            width: 100%;
+            text-align: left; /* Align label to the left */
+        }
+        .form-group label {
+            display: block;
+            font-size: 1.1em;
+            color: #2c3e50;
+            margin-bottom: 8px; /* Added space between label and input */
+            font-weight: 600;
+        }
+        .form-group input, .form-group textarea {
+            width: calc(100% - 20px); /* Adjusted width for padding */
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: border-color 0.3s ease;
+            outline: none;
+        }
+        .form-group input:focus, .form-group textarea:focus {
+            border-color: #3498db;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08); /* Added a subtle shadow on focus */
+        }
+        .form-group textarea {
+            resize: vertical;
+            height: 150px; /* Increased default height */
+        }
+        .contact button {
+            padding: 12px 25px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-weight: 600;
+            width: auto; /* Adjust width to content */
+            align-self: center; /* Center the button */
+            margin-top: 10px;
+        }
+        .contact button:hover {
+            background-color: #45a049;
+        }
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 25px; /* Increased footer padding */
+            margin-top: 60px; /* Increased margin before footer */
+            border-top: 4px solid #34495e; /* Added a border to the top of the footer */
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                text-align: center;
+            }
+            nav ul li {
+                margin: 10px 0;
+            }
+            .hero {
+                padding: 80px 20px;
+            }
+            .hero h1 {
+                font-size: 2.5em;
+            }
+            .hero p {
+                font-size: 1.1em;
+            }
+            .about {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            .about img {
+                margin-top: 20px;
+            }
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+             .skills-list li{
+                margin: 10px;
+            }
+            .contact form {
+                width: 95%;
+            }
+        }
+
+        /* Added even smaller screen adjustment */
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 2em;
+            }
+            .hero h1 {
+                font-size: 2em;
+            }
+            .hero p {
+                font-size: 1em;
+            }
+            .button {
+                font-size: 1em;
+                padding: 10px 20px;
+            }
+            section h2{
+                font-size: 1.8em;
+            }
+            .project-card h3{
+                font-size: 1.2em;
+            }
+            nav ul li a{
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Your Name</h1>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <h1>Hi, I'm Your Name</h1>
+                <p>A passionate [Your Profession/Skill] showcasing my work.</p>
+                <div class="social-links">
+                    <a href="#" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    </div>
+                <a href="#portfolio" class="button">View My Work</a>
+            </div>
+        </section>
+
+        <section id="about" class="about">
+            <h2>About Me</h2>
+            <div class="about-content">
+            <p>Write a brief introduction about yourself here. Highlight your background, what you're passionate about, and your key skills.</p>
+            </div>
+            <img src="placeholder.jpg" alt="Your Name">
+        </section>
+
+        <section id="portfolio" class="portfolio">
+            <h2>Portfolio</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <img src="placeholder.jpg" alt="Project 1">
+                    <h3>Project Title 1</h3>
+                    <p>Brief description of the project.  Include details about the technologies used and your role in the project.</p>
+                    <a href="#" target="_blank">View Project</a>
+                </div>
+                <div class="project-card">
+                    <img src="placeholder.jpg" alt="Project 2">
+                    <h3>Project Title 2</h3>
+                    <p>Brief description of the project. Include details about the technologies used and your role in the project.</p>
+                    <a href="#" target="_blank">View Project</a>
+                </div>
+                </div>
+        </section>
+
+        <section id="skills" class="skills">
+            <h2>Skills</h2>
+            <ul class="skills-list">
+                <li>HTML</li>
+                <li>CSS</li>
+                <li>JavaScript</li>
+                <li>[Add More Skills]</li>
+            </ul>
+        </section>
+
+        <section id="contact" class="contact">
+            <h2>Contact Me</h2>
+            <form action="#" method="POST">
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message:</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="button">Send Message</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Your Name. All rights reserved.</p>
+    </footer>
+
+    <script src="https://kit.fontawesome.com/your-font-awesome-kit.js" crossorigin="anonymous"></script>
+    <script>
+        // Basic JavaScript for demonstration purposes
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
