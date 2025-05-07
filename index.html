@@ -417,7 +417,7 @@
 
         <section id="contact" class="contact">
             <h2>Contact Me</h2>
-            form action="mailto:ibrbalde12@gmail.com" method="POST" enctype="text/plain">
+            <form action="mailto:ibrbalde12@gmail.com" method="POST" enctype="text/plain">
                 <div class="form-group">
                     <label for="name">Name:</label>
                     <input type="text" id="name" name="name" required>
@@ -449,6 +449,21 @@
                     behavior: 'smooth'
                 });
             });
+            document.getElementById('contact-form').addEventListener('submit', function(event) {
+            // event.preventDefault();  // Removed to allow mailto: action
+            let name = document.getElementById('name').value;
+            let email = document.getElementById('email').value;
+            let message = document.getElementById('message').value;
+
+            if (name && email && message) {
+                let mailtoUri = "mailto:ibrbalde12@gmail.com" +
+                    "?subject=" + encodeURIComponent("Contact Form Submission from Your Portfolio") +
+                    "&body=" + encodeURIComponent("Name: " + name + "\nEmail: " + email + "\nMessage:\n" + message);
+
+                window.location.href = mailtoUri; // Open the user's email client
+            } else {
+                alert("Please fill in all fields.");
+            }
         });
     </script>
 </body>
