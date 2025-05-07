@@ -449,22 +449,60 @@
                     behavior: 'smooth'
                 });
             });
-            document.getElementById('contact-form').addEventListener('submit', function(event) {
-            // event.preventDefault();  // Removed to allow mailto: action
-            let name = document.getElementById('name').value;
-            let email = document.getElementById('email').value;
-            let message = document.getElementById('message').value;
-
-            if (name && email && message) {
-                let mailtoUri = "mailto:ibrbalde12@gmail.com" +
-                    "?subject=" + encodeURIComponent("Contact Form Submission from Your Portfolio") +
-                    "&body=" + encodeURIComponent("Name: " + name + "\nEmail: " + email + "\nMessage:\n" + message);
-
-                window.location.href = mailtoUri; // Open the user's email client
-            } else {
-                alert("Please fill in all fields.");
-            }
         });
+        const contactForm = document.getElementById('contact-form');
+        const messageSent = document.getElementById('message-sent');
+        const messageError = document.getElementById('message-error');
+
+        contactForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+
+            // Basic client-side validation
+            if (!name || !email || !message) {
+                alert("Please fill in all fields."); // Improved user feedback
+                return; // Stop form submission
+            }
+
+            // Construct the data object to send
+            const formData = {
+                name: name,
+                email: email,
+                message: message
+            };
+
+            // Use fetch to send the data to a server-side script (replace with your server endpoint)
+            fetch('/send-email.php', {  //  IMPORTANT: Replace '/send-email.php' with the actual URL of your server-side script.
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Handle success (e.g., show a success message)
+                    messageSent.style.display = 'block';
+                    messageError.style.display = 'none';
+                    contactForm.reset(); // Clear the form
+                } else {
+                    // Handle error (e.g., show an error message)
+                    messageError.style.display = 'block';
+                    messageSent.style.display = 'none';
+                }
+                return response.json(); //Added to get more info
+            })
+            .then(data => {
+                console.log(data); // Log the response from the server
+            })
+            .catch(error => {
+                console.error('Error:', error); // Log any errors
+                messageError.style.display = 'block';
+                messageSent.style.display = 'none';
+            });
     </script>
 </body>
 </html>
