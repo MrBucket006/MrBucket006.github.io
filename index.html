@@ -464,6 +464,64 @@
                 });
             });
         });
+        const chatButton = document.getElementById('chat-button');
+        const chatWindow = document.getElementById('chat-window');
+        const chatInput = document.getElementById('chat-input');
+        const chatSubmit = document.getElementById('chat-submit');
+        const chatMessages = document.getElementById('chat-messages');
+        const initialMessage = document.getElementById('initial-message');
+
+        let isChatOpen = false;
+
+        const responses = {
+            "hello": "Hi there! How can I help you?",
+            "how are you": "I'm doing well, thank you!",
+            "what is your name": "My name is The ChatBot.",
+            "default": "For what you are looking for, you can select one of the tabs at the top to navigate there or scroll down the page! For any other questions and concerns, go to the Contact section and reach out to Mr.Balde!!"
+        };
+
+        chatButton.addEventListener('click', () => {
+            isChatOpen = !isChatOpen;
+            chatWindow.style.display = isChatOpen ? 'flex' : 'none';
+        });
+
+        chatSubmit.addEventListener('click', () => {
+            const messageText = chatInput.value.toLowerCase();
+            if (messageText.trim() === '') return;
+
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('message');
+            messageElement.classList.add('user');
+            messageElement.innerHTML = `
+                <span class="sender">You</span>
+                <p class="text">${messageText}</p>
+            `;
+            chatMessages.appendChild(messageElement);
+            chatInput.value = '';
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            // Simulate chatbot response
+            setTimeout(() => {
+                let responseText = responses[messageText];
+                if (!responseText) {
+                    responseText = responses["default"];
+                }
+                const responseElement = document.createElement('div');
+                responseElement.classList.add('message');
+                responseElement.innerHTML = `
+                    <span class="sender">Chatbot</span>
+                    <p class="text">${responseText}</p>
+                `;
+                chatMessages.appendChild(responseElement);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }, 1000);
+        });
+
+        chatInput.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter') {
+                chatSubmit.click();
+            }
+        });
     </script>
 </body>
 </html>
